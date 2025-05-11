@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 99 102 241;
+  --color-secondary: 139 92 246;
+  --color-accent: 16 185 129;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans antialiased text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900 transition-colors duration-300;
+  overflow-x: hidden;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(var(--color-primary), 0.15), rgba(var(--color-secondary), 0.05));
+  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(var(--color-primary), 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--color-primary), 0.05) 1px, transparent 1px);
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md 
+    focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-600;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-600 hover:bg-secondary-700 text-white focus:ring-secondary-600;
+  }
+  
+  .btn-outline {
+    @apply btn border-gray-300 dark:border-gray-700 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 
+    text-gray-700 dark:text-gray-300 focus:ring-gray-500;
+  }
+  
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-10;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg relative;
+  }
+  
+  .nav-link {
+    @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition-colors duration-200;
+  }
+}
+
+.diagonal-box {
+  --skew-angle: -5deg;
+  --diagonal-padding: 50px;
+  
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--diagonal-padding);
+  margin-bottom: var(--diagonal-padding);
+}
+
+.diagonal-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: skewY(var(--skew-angle));
+  transform-origin: center;
+  @apply bg-gray-50 dark:bg-gray-950;
+}
